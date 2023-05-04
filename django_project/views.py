@@ -1,7 +1,6 @@
 from django.shortcuts import render
 import openai
 import requests
-import os
 
 from .forms import AnswerForm
 
@@ -34,14 +33,6 @@ def index(request):
         # if form.is_valid():
         question= form['prompt'].value()
         message = generate_message(request, form['prompt'].value().strip())
-
-        #OCR Recognizer
-        # url = "https://freeocrapi.com/api"
-        # filename = os.path.join(os.path.dirname(os.path.dirname(__file__)),'django_project/test.jpg')
-        # data = {'file': open(filename, 'rb')}
-        # response = requests.request("POST", url, files=data)
-        # print(response.text)
-      
         context = {
           'question': question,
           'message': message,
